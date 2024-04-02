@@ -1,5 +1,6 @@
 package com.corner.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,8 +18,8 @@ public class Infos {
     private String debit;
     private String volume;
     private String PH;
-    @ManyToOne
-    @JoinColumn(name = "type_id")
-    private Type type;
+    @JsonProperty("typeId")
+    public Long TypeId;
     private String categorie;
+
 }

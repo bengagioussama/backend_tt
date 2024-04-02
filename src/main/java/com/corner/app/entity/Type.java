@@ -1,10 +1,15 @@
 package com.corner.app.entity;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Type {
     @Column(length = 40, nullable = false)
     @Id
@@ -13,30 +18,9 @@ public class Type {
     private String typeName;
     private String Description;
     private String Datec;
-    private  String responsable;
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String description) {
-        Description = description;
-    }
-
-    public String getStatut() {
-        return statut;
-    }
-
+    private String responsable;
     private String statut;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getTypeName() {
-        return typeName;
-    }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
 }

@@ -2,6 +2,7 @@ package com.corner.app.service.add;
 
 import com.corner.app.entity.Infos;
 import com.corner.app.repository.InfoRepository;
+import com.corner.app.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,12 @@ import java.util.Optional;
 @Service
 public class InfosService implements IInfosService{
     private final InfoRepository infoRepository;
+    private final TypeRepository typeRepository;
 
     @Autowired
-    public InfosService(InfoRepository infoRepository) {
+    public InfosService(InfoRepository infoRepository, TypeRepository typeRepository) {
         this.infoRepository = infoRepository;
+        this.typeRepository = typeRepository;
     }
 
     @Override
@@ -37,14 +40,12 @@ public class InfosService implements IInfosService{
         Optional<Infos> existingInfoOptional = infoRepository.findById(id);
         if (existingInfoOptional.isPresent()) {
             Infos existingInfo = existingInfoOptional.get();
-            // Update the fields you want to allow modification for
             existingInfo.setDebit(updatedInfo.getDebit());
             existingInfo.setVolume(updatedInfo.getVolume());
             existingInfo.setPH(updatedInfo.getPH());
-            existingInfo.setType(updatedInfo.getType());
+            existingInfo.setTypeId(updatedInfo.getTypeId());
             return infoRepository.save(existingInfo);
         } else {
-            // Handle error if Info with given id is not found
             return null;
         }
 
